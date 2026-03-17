@@ -17,7 +17,7 @@ function closeOnEscape(e) {
     } else if (!isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
       toggleMenu(nav, navSections);
-      nav.querySelector('button').focus();
+      nav.querySelector('.nav-hamburger button').focus();
     }
   }
 }
@@ -98,9 +98,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 
   // enable menu collapse on escape keypress
   if (!expanded || isDesktop.matches) {
-    // collapse menu on escape press
     window.addEventListener('keydown', closeOnEscape);
-    // collapse menu on focus lost
     nav.addEventListener('focusout', closeOnFocusLost);
   } else {
     window.removeEventListener('keydown', closeOnEscape);
@@ -131,10 +129,22 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
+  if (navBrand) {
+    const brandLink = navBrand.querySelector('.button');
+    if (brandLink) {
+      brandLink.className = '';
+      brandLink.closest('.button-container').className = '';
+    }
+    // Wrap plain text brand in oracle/name spans if not already an image
+    if (!navBrand.querySelector('img')) {
+      const brandText = navBrand.textContent.trim();
+      if (brandText) {
+        navBrand.innerHTML = `<a href="/" aria-label="${brandText}">
+          <span class="nav-brand-oracle">Oracle</span>
+          <span class="nav-brand-name">${brandText}</span>
+        </a>`;
+      }
+    }
   }
 
   const navSections = nav.querySelector('.nav-sections');
@@ -158,9 +168,47 @@ export default async function decorate(block) {
       <span class="nav-hamburger-icon"></span>
     </button>`;
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-  nav.prepend(hamburger);
+
+  // Build search input
+  const searchDiv = document.createElement('div');
+  searchDiv.classList.add('nav-search');
+  searchDiv.innerHTML = `<div class="nav-search-inner">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="search" placeholder="Search" aria-label="Search" />
+  </div>`;
+
+  // Decorate tools section: detect CTA button and login link
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    navTools.querySelectorAll('a.button').forEach((btn) => {
+      btn.classList.add('nav-cta-button');
+    });
+  }
+
+  // Build two-tier structure
+  const topbar = document.createElement('div');
+  topbar.classList.add('nav-topbar');
+  const topbarInner = document.createElement('div');
+  topbarInner.classList.add('nav-topbar-inner');
+
+  if (navBrand) topbarInner.append(hamburger, navBrand);
+  topbarInner.append(searchDiv);
+  if (navTools) topbarInner.append(navTools);
+  topbar.append(topbarInner);
+
+  const bottombar = document.createElement('div');
+  bottombar.classList.add('nav-bottombar');
+  const bottombarInner = document.createElement('div');
+  bottombarInner.classList.add('nav-bottombar-inner');
+  if (navSections) bottombarInner.append(navSections);
+  bottombar.append(bottombarInner);
+
+  nav.prepend(bottombar);
+  nav.prepend(topbar);
+
   nav.setAttribute('aria-expanded', 'false');
-  // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 

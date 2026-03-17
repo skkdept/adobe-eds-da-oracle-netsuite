@@ -1,0 +1,214 @@
+.article-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Featured Resource */
+.article-sidebar .sidebar-featured {
+  background-color: var(--sidebar-blue);
+  color: #fff;
+  padding: 20px;
+}
+
+.article-sidebar .sidebar-featured h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.article-sidebar .sidebar-featured h4 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.article-sidebar .sidebar-featured p {
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.9;
+  margin-bottom: 12px;
+  color: rgb(255 255 255 / 90%);
+}
+
+.article-sidebar .sidebar-featured-image {
+  margin-bottom: 12px;
+  line-height: 0;
+}
+
+.article-sidebar .sidebar-featured-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.article-sidebar .sidebar-featured-image-placeholder {
+  height: 128px;
+  background-color: rgb(255 255 255 / 20%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-sidebar .sidebar-download-btn {
+  display: inline-block;
+  background-color: var(--accent-orange);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.article-sidebar .sidebar-download-btn:hover {
+  background-color: var(--accent-orange-hover);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Related Articles */
+.article-sidebar .sidebar-related {
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  padding: 20px;
+}
+
+.article-sidebar .sidebar-related h3 {
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.article-sidebar .sidebar-related ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.article-sidebar .sidebar-related li {
+  margin-bottom: 12px;
+}
+
+.article-sidebar .sidebar-related li::before {
+  display: none;
+}
+
+.article-sidebar .sidebar-related a:any-link {
+  font-size: 14px;
+  color: var(--link-color);
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.article-sidebar .sidebar-related a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* Popular Topics */
+.article-sidebar .sidebar-topics {
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  padding: 20px;
+}
+
+.article-sidebar .sidebar-topics h3 {
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.article-sidebar .sidebar-topics-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.article-sidebar .sidebar-tag {
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 13px;
+  padding: 6px 12px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.article-sidebar .sidebar-tag:hover {
+  background-color: #e0e0e0;
+  color: #333;
+  text-decoration: none;
+}
+
+/* Newsletter */
+.article-sidebar .sidebar-newsletter {
+  background-color: var(--sidebar-blue);
+  color: #fff;
+  padding: 20px;
+}
+
+.article-sidebar .sidebar-newsletter h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.article-sidebar .sidebar-newsletter p {
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.9;
+  margin-bottom: 12px;
+  color: rgb(255 255 255 / 90%);
+}
+
+.article-sidebar .sidebar-newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.article-sidebar .sidebar-newsletter-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 1px solid rgb(255 255 255 / 30%);
+  background: transparent;
+  color: #fff;
+  outline: none;
+}
+
+.article-sidebar .sidebar-newsletter-form input::placeholder {
+  color: rgb(255 255 255 / 60%);
+}
+
+.article-sidebar .sidebar-newsletter-form input:focus {
+  border-color: rgb(255 255 255 / 60%);
+}
+
+.article-sidebar .sidebar-subscribe-btn {
+  width: 100%;
+  background-color: var(--accent-orange);
+  color: #fff;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.article-sidebar .sidebar-subscribe-btn:hover {
+  background-color: var(--accent-orange-hover);
+}

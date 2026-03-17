@@ -4,16 +4,23 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 20px;
 }
 
 .cards > ul > li {
   position: relative;
   overflow: hidden;
-  border-radius: 4px;
-  min-height: 220px;
+  height: 280px;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.cards > ul > li:hover {
+  box-shadow: 0 8px 24px rgb(0 0 0 / 18%);
 }
 
 .cards .cards-card-image {
@@ -29,28 +36,29 @@
   display: block;
 }
 
-/* color overlay on the image */
+/* solid color overlays — teal, orange, burgundy cycling per position */
 .cards .cards-card-image::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 30%) 50%, rgb(0 0 0 / 10%) 100%);
 }
 
-/* alternate card overlay colors */
 .cards > ul > li:nth-child(6n+1) .cards-card-image::after,
 .cards > ul > li:nth-child(6n+4) .cards-card-image::after {
-  background: linear-gradient(to top, rgb(0 116 166 / 85%) 0%, rgb(0 116 166 / 60%) 100%);
+  background-color: rgb(0 125 138 / 85%);
 }
 
 .cards > ul > li:nth-child(6n+2) .cards-card-image::after,
 .cards > ul > li:nth-child(6n+5) .cards-card-image::after {
-  background: linear-gradient(to top, rgb(180 100 40 / 85%) 0%, rgb(180 100 40 / 60%) 100%);
+  background-color: rgb(198 113 43 / 85%);
 }
 
-.cards > ul > li:nth-child(6n+3) .cards-card-image::after,
+.cards > ul > li:nth-child(6n+3) .cards-card-image::after {
+  background-color: rgb(118 52 84 / 85%);
+}
+
 .cards > ul > li:nth-child(6n+6) .cards-card-image::after {
-  background: linear-gradient(to top, rgb(0 116 166 / 85%) 0%, rgb(0 116 166 / 60%) 100%);
+  background-color: rgb(91 76 119 / 85%);
 }
 
 .cards .cards-card-body {
@@ -62,19 +70,28 @@
 
 .cards .cards-card-body h3 {
   margin-top: 0;
-  font-size: var(--heading-font-size-l);
-  font-weight: 600;
+  margin-bottom: 12px;
+  font-size: 22px;
+  font-weight: 300;
   color: #fff;
+  line-height: 1.2;
 }
 
 .cards .cards-card-body p {
-  font-size: var(--body-font-size-s);
-  color: rgb(255 255 255 / 90%);
-  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgb(255 255 255 / 95%);
+  margin: 0;
+}
+
+@media (width >= 600px) {
+  .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (width >= 900px) {
   .cards > ul {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
