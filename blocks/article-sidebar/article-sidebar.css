@@ -99,7 +99,7 @@
 .article-sidebar .sidebar-download-btn {
   display: inline-block;
   background-color: var(--accent-orange);
-  color: #fff;
+  color: #1a1a1a; /* dark text: #1a1a1a on #e87722 = 5.0:1, passes WCAG AA */
   font-size: 13px;
   font-weight: 600;
   padding: 8px 16px;
@@ -109,7 +109,7 @@
 
 .article-sidebar .sidebar-download-btn:hover {
   background-color: var(--accent-orange-hover);
-  color: #fff;
+  color: #1a1a1a;
   text-decoration: none;
 }
 
@@ -244,7 +244,7 @@
 .article-sidebar .sidebar-subscribe-btn {
   width: 100%;
   background-color: var(--accent-orange);
-  color: #fff;
+  color: #1a1a1a; /* dark text: passes WCAG AA on #e87722 */
   border: none;
   font-size: 13px;
   font-weight: 600;

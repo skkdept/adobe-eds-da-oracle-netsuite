@@ -8,7 +8,7 @@ export default function decorate(block) {
       const contentCell = cells[1];
       rows[0].innerHTML = '';
       if (labelText) {
-        const heading = document.createElement('h3');
+        const heading = document.createElement('h2');
         heading.textContent = labelText;
         rows[0].append(heading);
       }

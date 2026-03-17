@@ -414,7 +414,7 @@ main .section.breadcrumb > div {
 main .section.breadcrumb p {
   margin: 0;
   font-size: var(--body-font-size-xs);
-  color: var(--text-color-muted);
+  color: #595959; /* #767676 fails WCAG AA on #f7f7f7; #595959 = 5.9:1 */
 }
 
 /* section metadata */
