@@ -4,6 +4,50 @@
   gap: 24px;
 }
 
+/* In This Article TOC */
+.article-sidebar .sidebar-toc {
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  padding: 20px;
+}
+
+.article-sidebar .sidebar-toc-title {
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-color-muted);
+}
+
+.article-sidebar .sidebar-toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.article-sidebar .sidebar-toc li {
+  margin-bottom: 8px;
+}
+
+.article-sidebar .sidebar-toc li.sidebar-toc-sub {
+  padding-left: 12px;
+}
+
+.article-sidebar .sidebar-toc a:any-link {
+  font-size: 13px;
+  color: var(--link-color);
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.article-sidebar .sidebar-toc a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
 /* Featured Resource */
 .article-sidebar .sidebar-featured {
   background-color: var(--sidebar-blue);

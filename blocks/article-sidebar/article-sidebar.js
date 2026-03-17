@@ -1,10 +1,14 @@
 /**
  * Decorates the article-sidebar block.
  *
+ * Renders a sticky sidebar matching the Oracle NetSuite reference design:
+ *   1. "In This Article" auto-generated TOC (from article h2/h3 headings)
+ *   2. Authored widget rows (Featured Resource, Related Articles, Popular Topics, Newsletter)
+ *
  * Expected authored content (table rows):
  *   Row 1: Featured Resource — cells: [image?, title, description, cta-link]
  *   Row 2+: Widget rows — first cell heading determines type:
- *     "Related Articles" → link list
+ *     "Related Articles" / "Trending Articles" → link list
  *     "Popular Topics"   → tag buttons
  *     "Stay Informed" / "Newsletter" → email signup form
  *
@@ -14,6 +18,41 @@ export default function decorate(block) {
   const rows = [...block.children];
   block.textContent = '';
 
+  // 1. Auto-generate "In This Article" TOC
+  const article = block.closest('.section')?.closest('main');
+  if (article) {
+    const headings = [...article.querySelectorAll('h2, h3')].filter((h) => {
+      // skip headings inside the sidebar itself
+      if (block.contains(h)) return false;
+      // skip headings with no text or id
+      return h.id && h.textContent.trim();
+    });
+
+    if (headings.length > 0) {
+      const toc = document.createElement('div');
+      toc.classList.add('sidebar-toc');
+
+      const tocTitle = document.createElement('p');
+      tocTitle.classList.add('sidebar-toc-title');
+      tocTitle.textContent = 'In This Article';
+      toc.append(tocTitle);
+
+      const ul = document.createElement('ul');
+      headings.forEach((h) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${h.id}`;
+        a.textContent = h.textContent.replace(/\*/g, '').trim();
+        if (h.tagName === 'H3') li.classList.add('sidebar-toc-sub');
+        li.append(a);
+        ul.append(li);
+      });
+      toc.append(ul);
+      block.append(toc);
+    }
+  }
+
+  // 2. Authored widgets
   rows.forEach((row, index) => {
     const cells = [...row.children];
 
@@ -26,15 +65,12 @@ export default function decorate(block) {
       heading.textContent = 'Featured Resource';
       widget.append(heading);
 
-      // Check if first cell has an image
       let [imgCell] = cells;
       let contentStart = 0;
       if (imgCell && !imgCell.querySelector('img, picture')) {
         imgCell = null;
       }
-      if (imgCell) {
-        contentStart = 1;
-      }
+      if (imgCell) contentStart = 1;
 
       if (imgCell) {
         const imgWrapper = document.createElement('div');
@@ -47,7 +83,6 @@ export default function decorate(block) {
         widget.append(placeholder);
       }
 
-      // Title
       const titleCell = cells[contentStart];
       if (titleCell) {
         const title = document.createElement('h4');
@@ -55,7 +90,6 @@ export default function decorate(block) {
         widget.append(title);
       }
 
-      // Description
       const descCell = cells[contentStart + 1];
       if (descCell) {
         const desc = document.createElement('p');
@@ -63,7 +97,6 @@ export default function decorate(block) {
         widget.append(desc);
       }
 
-      // CTA link
       const ctaCell = cells[contentStart + 2] || cells[contentStart + 1];
       const ctaLink = ctaCell && ctaCell.querySelector('a');
       if (ctaLink) {
@@ -76,12 +109,11 @@ export default function decorate(block) {
       return;
     }
 
-    // Determine widget type from first cell heading text
     const typeText = (cells[0]?.textContent || '').trim().toLowerCase();
     const contentCell = cells[1] || cells[0];
 
-    if (typeText.includes('related') || typeText.includes('article')) {
-      // Related Articles widget
+    if (typeText.includes('related') || typeText.includes('article') || typeText.includes('trending')) {
+      // Related / Trending Articles widget
       const widget = document.createElement('div');
       widget.classList.add('sidebar-related');
 
@@ -100,15 +132,16 @@ export default function decorate(block) {
         });
         widget.append(ul);
       } else {
-        // fallback: treat each paragraph as a link entry
         const paras = contentCell ? [...contentCell.querySelectorAll('p')] : [];
-        const ul = document.createElement('ul');
-        paras.forEach((p) => {
-          const li = document.createElement('li');
-          li.append(p);
-          ul.append(li);
-        });
-        if (ul.children.length) widget.append(ul);
+        if (paras.length) {
+          const ul = document.createElement('ul');
+          paras.forEach((p) => {
+            const li = document.createElement('li');
+            li.append(p);
+            ul.append(li);
+          });
+          widget.append(ul);
+        }
       }
 
       block.append(widget);
@@ -131,7 +164,6 @@ export default function decorate(block) {
           tagsContainer.append(link);
         });
       } else {
-        // treat paragraphs as tags
         const paras = contentCell ? [...contentCell.querySelectorAll('p')] : [];
         paras.forEach((p) => {
           const span = document.createElement('span');
@@ -173,7 +205,7 @@ export default function decorate(block) {
       widget.append(form);
       block.append(widget);
     } else {
-      // Generic widget — just render as-is
+      // Generic widget
       const widget = document.createElement('div');
       widget.classList.add('sidebar-generic');
       cells.forEach((cell) => widget.append(cell));

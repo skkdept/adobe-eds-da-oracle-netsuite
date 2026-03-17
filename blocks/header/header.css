@@ -233,7 +233,9 @@ header .nav-sections ul > li {
 }
 
 /* nav-drop base styles merged here, before hover, before duplicate */
+/* stylelint-disable-next-line no-descending-specificity */
 header .nav-sections ul > li > a:any-link,
+/* stylelint-disable-next-line no-descending-specificity */
 header .nav-sections ul > li > p,
 header .nav-sections ul > li > p > a:any-link,
 header .nav-sections .nav-drop {
@@ -253,6 +255,7 @@ header .nav-sections .nav-drop {
   padding-right: 14px;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header .nav-sections ul > li > a:hover,
 header .nav-sections ul > li > p:hover,
 header .nav-sections ul > li > p > a:hover,
