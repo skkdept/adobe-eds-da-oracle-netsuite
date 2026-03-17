@@ -197,8 +197,8 @@ export default async function decorate(block) {
       }
     });
 
-    // Promote any authored button to CTA style
-    navTools.querySelectorAll('a.button').forEach((btn) => {
+    // Promote any authored button (a.button from decorateButtons, or raw strong>a) to CTA style
+    navTools.querySelectorAll('a.button, strong > a').forEach((btn) => {
       btn.classList.add('nav-cta-button');
     });
 
