@@ -230,6 +230,8 @@ header .nav-sections ul > li {
 
 /* nav-drop base styles merged here, before hover, before duplicate */
 header .nav-sections ul > li > a:any-link,
+header .nav-sections ul > li > p,
+header .nav-sections ul > li > p > a:any-link,
 header .nav-sections .nav-drop {
   color: #fff;
   font-size: 13px;
@@ -240,6 +242,7 @@ header .nav-sections .nav-drop {
   cursor: pointer;
   position: relative;
   padding-right: 0;
+  margin: 0;
 }
 
 header .nav-sections .nav-drop {
@@ -247,6 +250,8 @@ header .nav-sections .nav-drop {
 }
 
 header .nav-sections ul > li > a:hover,
+header .nav-sections ul > li > p:hover,
+header .nav-sections ul > li > p > a:hover,
 header .nav-sections .nav-drop:hover {
   opacity: 0.8;
   text-decoration: none;
