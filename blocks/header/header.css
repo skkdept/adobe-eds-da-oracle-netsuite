@@ -357,6 +357,26 @@ header .nav-sections .default-content-wrapper > ul > li > ul > li > a:hover {
     position: sticky;
   }
 
+  /* switch topbar to 3-column grid so search is truly centered */
+  header .nav-topbar-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  header .nav-brand {
+    justify-self: start;
+  }
+
+  header .nav-search {
+    display: block;
+    width: 300px;
+    max-width: 300px;
+  }
+
+  header .nav-tools {
+    justify-self: end;
+  }
+
   header .nav-sections {
     display: block;
     visibility: visible;
