@@ -193,7 +193,8 @@ header .nav-tools .nav-phone-icon {
   flex-shrink: 0;
 }
 
-header .nav-tools .nav-cta-button {
+/* specificity must beat header .nav-tools a:any-link (0,2,2) */
+header .nav-tools a.nav-cta-button:any-link {
   background-color: #5fb9b5;
   border: 1px solid #5fb9b5;
   color: #161513;
@@ -202,9 +203,10 @@ header .nav-tools .nav-cta-button {
   border-radius: 4px;
   opacity: 1;
   transition: background-color 0.2s, border-color 0.2s;
+  display: inline-block;
 }
 
-header .nav-tools .nav-cta-button:hover {
+header .nav-tools a.nav-cta-button:hover {
   background-color: #56aca8;
   border-color: #56aca8;
   color: #161513;
