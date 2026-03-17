@@ -18,12 +18,12 @@ export default function decorate(block) {
   const rows = [...block.children];
   block.textContent = '';
 
-  // 1. Auto-generate "In This Article" TOC
-  const article = block.closest('.section')?.closest('main');
-  if (article) {
-    const headings = [...article.querySelectorAll('h2, h3')].filter((h) => {
-      // skip headings inside the sidebar itself
-      if (block.contains(h)) return false;
+  // 1. Auto-generate "In This Article" TOC — scan only the article section
+  const section = block.closest('.section');
+  if (section) {
+    const headings = [...section.querySelectorAll('h2, h3')].filter((h) => {
+      // skip headings inside the sidebar block itself
+      if (block.closest('.article-sidebar-wrapper')?.contains(h)) return false;
       // skip headings with no text or id
       return h.id && h.textContent.trim();
     });
