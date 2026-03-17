@@ -72,7 +72,7 @@ header .nav-brand img {
 /* search bar */
 header .nav-search {
   flex: 1 1 auto;
-  max-width: 400px;
+  max-width: 560px;
   display: none;
 }
 
@@ -104,9 +104,10 @@ header .nav-search input {
   background-color: #5a5a5a;
   color: #fff;
   border: none;
-  padding: 8px 12px 8px 34px;
+  padding: 10px 12px 10px 36px;
   font-size: 14px;
   outline: none;
+  border-radius: 2px;
   transition: background-color 0.2s;
 }
 
@@ -140,7 +141,18 @@ header .nav-tools {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
+}
+
+header .nav-tools .default-content-wrapper {
+  display: flex;
+  align-items: center;
   gap: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+header .nav-tools .default-content-wrapper > p {
+  margin: 0;
 }
 
 header .nav-tools a:any-link,
@@ -163,11 +175,28 @@ header .nav-tools button:hover {
   text-decoration: none;
 }
 
+header .nav-tools .nav-phone {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+header .nav-tools .nav-phone-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
 header .nav-tools .nav-cta-button {
   background-color: var(--accent-color);
   color: #1a1a1a;
   font-weight: 600;
   padding: 8px 20px;
+  border-radius: 4px;
   opacity: 1;
   transition: background-color 0.2s;
 }
