@@ -392,8 +392,6 @@ main .section.article-layout > div {
   main .section.article-layout > .article-sidebar-wrapper {
     flex: 1;
     min-width: 0;
-    position: sticky;
-    top: calc(var(--nav-height) + 16px);
   }
 }
 
