@@ -242,35 +242,37 @@ header .nav-sections .nav-drop[aria-expanded='true']::after {
   transform: rotate(315deg);
 }
 
-/* mobile expanded menu — placed before dropdown rules to avoid descending specificity */
-header nav[aria-expanded='true'] .nav-sections {
-  display: block;
-  visibility: visible;
-  background-color: var(--header-nav-bg);
-  position: fixed;
-  inset: var(--nav-topbar-height) 0 0;
-  overflow-y: auto;
-  z-index: 99;
-}
+/* mobile expanded menu — only applies below 900px */
+@media (width < 900px) {
+  header nav[aria-expanded='true'] .nav-sections {
+    display: block;
+    visibility: visible;
+    background-color: var(--header-nav-bg);
+    position: fixed;
+    inset: var(--nav-topbar-height) 0 0;
+    overflow-y: auto;
+    z-index: 99;
+  }
 
-header nav[aria-expanded='true'] .nav-sections ul {
-  flex-direction: column;
-  height: auto;
-  align-items: flex-start;
-  padding: 16px;
-  gap: 0;
-}
+  header nav[aria-expanded='true'] .nav-sections ul {
+    flex-direction: column;
+    height: auto;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 0;
+  }
 
-header nav[aria-expanded='true'] .nav-sections ul > li {
-  width: 100%;
-  border-bottom: 1px solid rgb(255 255 255 / 10%);
-}
+  header nav[aria-expanded='true'] .nav-sections ul > li {
+    width: 100%;
+    border-bottom: 1px solid rgb(255 255 255 / 10%);
+  }
 
-header nav[aria-expanded='true'] .nav-sections ul > li > a:any-link,
-header nav[aria-expanded='true'] .nav-sections .nav-drop {
-  display: block;
-  padding: 12px 0;
-  font-size: 14px;
+  header nav[aria-expanded='true'] .nav-sections ul > li > a:any-link,
+  header nav[aria-expanded='true'] .nav-sections .nav-drop {
+    display: block;
+    padding: 12px 0;
+    font-size: 14px;
+  }
 }
 
 /* desktop dropdown menus */
