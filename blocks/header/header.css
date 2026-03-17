@@ -72,7 +72,7 @@ header .nav-brand img {
 /* search bar */
 header .nav-search {
   flex: 1 1 auto;
-  max-width: 560px;
+  max-width: 300px;
   display: none;
 }
 
