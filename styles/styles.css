@@ -361,6 +361,17 @@ main .section.article-layout > div {
   main .section.article-layout > div {
     grid-template-columns: 730px 1fr;
   }
+
+  /* pin all non-sidebar wrappers to column 1 */
+  main .section.article-layout > div > div:not(.article-sidebar-wrapper) {
+    grid-column: 1;
+  }
+
+  /* pin sidebar to column 2, spanning all rows */
+  main .section.article-layout > div > .article-sidebar-wrapper {
+    grid-column: 2;
+    grid-row: 1 / span 100;
+  }
 }
 
 /* breadcrumb bar */
