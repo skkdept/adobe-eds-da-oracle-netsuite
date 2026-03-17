@@ -10,6 +10,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  createOptimizedPicture,
 } from './aem.js';
 
 /**
@@ -114,6 +115,30 @@ function decorateButtons(main) {
 }
 
 /**
+ * Re-processes inline content images with article-appropriate breakpoints.
+ * AEM's default srcset only has width=2000 (desktop) and width=750 (all mobile),
+ * so small viewports (~380px) wastefully download the 750px version.
+ * This replaces those picture elements with a 3-breakpoint set.
+ * @param {Element} main The main element
+ */
+function optimizeInlineImages(main) {
+  main.querySelectorAll('.default-content-wrapper picture').forEach((picture) => {
+    const img = picture.querySelector('img');
+    if (!img || !img.src) return;
+    const newPicture = createOptimizedPicture(img.src, img.alt, img.loading === 'eager', [
+      { media: '(min-width: 900px)', width: '750' },
+      { media: '(min-width: 480px)', width: '600' },
+      { width: '400' },
+    ]);
+    const newImg = newPicture.querySelector('img');
+    if (img.getAttribute('width')) newImg.setAttribute('width', img.getAttribute('width'));
+    if (img.getAttribute('height')) newImg.setAttribute('height', img.getAttribute('height'));
+    newImg.loading = img.loading || 'lazy';
+    picture.replaceWith(newPicture);
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -124,6 +149,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
+  optimizeInlineImages(main);
 }
 
 /**
