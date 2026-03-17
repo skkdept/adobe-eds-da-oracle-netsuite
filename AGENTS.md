@@ -8,6 +8,30 @@ This project is based on the https://github.com/adobe/aem-boilerplate/ project a
 
 The repository provides the basic structure, blocks, and configuration needed to run a complete site with `*.aem.live` as the backend.
 
+### Design References — ALWAYS use these, never the drafts folder
+
+The target design for this site is an Oracle NetSuite clone. When making any UI/UX decisions, building blocks, or debugging layout issues, refer to these two sources of truth:
+
+1. **Live reference page**: https://www.netsuite.com/portal/resource/articles/erp/what-is-erp.shtml
+   - This is the exact page we are replicating. Study its layout, components, and visual design.
+   - Key elements: two-column article layout (main article left, sidebar right), breadcrumb, callout boxes, related solutions cards, CTA banner.
+
+2. **Figma design**: https://floret-unity-63839672.figma.site
+   - This is the approved design specification for the site.
+   - Always check this for colors, spacing, typography, and component design before writing any CSS.
+
+> **IMPORTANT — Do NOT use the `drafts/` folder as a reference for expected content or layout.**
+> The `drafts/` folder contains local development scaffolding only. The actual page content lives in the CMS (DA Live) and is served via `https://main--adobe-eds-da-oracle-netsuite--skkdept.aem.page/`. Always test against the live preview URL, not the drafts folder. The drafts may be outdated or structurally different from what the CMS serves.
+
+### Known Live Page Issues (as of 2026-03-17)
+
+The live CMS page at `/what-is-erp` is currently missing several key components that exist in the reference design:
+
+- **Right sidebar is missing** — The page needs an `article-sidebar` block containing: Featured Resource, Related Articles, Popular Topics, and Stay Informed/Newsletter widgets. Without this block and the `section-metadata Style: article-layout` on the same section, the two-column layout never activates.
+- **Section structure is wrong** — All article content is in one giant section. It needs to be split: breadcrumb in its own section, article+sidebar in a second section with `article-layout` style.
+- **Broken images** — Images were imported with `about:error` src values and need real URLs.
+- **Broken links** — Internal links use `file:///` prefixes from the import process; these need to be corrected to relative paths.
+
 ### Key Technologies
 - Edge Delivery Services for AEM Sites (documentation at https://www.aem.live/ – search with `site:www.aem.live` to restrict web search results)
 - Vanilla JavaScript (ES6+), no transpiling, no build steps
@@ -74,11 +98,19 @@ The repository provides the basic structure, blocks, and configuration needed to
 
 CMS authored content is a key part of every AEM Website. The content of a page is broken into sections. Sections can have default content (text, headings, links, etc.) as well as content in blocks.
 
-If no authored content exists to test against, you can create static HTML files in a `drafts/` folder at the project root. Pass `--html-folder drafts` when starting the dev server. Follow the aem markup structure and save files with `.html` or `.plain.html` extensions.
+> **Do NOT rely on the `drafts/` folder for content structure or design decisions.** The canonical content is what the CMS (DA Live) serves. Use the live preview URL (`https://main--adobe-eds-da-oracle-netsuite--skkdept.aem.page/`) and the reference design (NetSuite page + Figma) as the source of truth.
+
+The `drafts/` folder exists only for local development scaffolding and may be structurally out of sync with CMS content. If you need to test a block locally with no CMS content, fetch the live `.plain.html` directly:
+
+```bash
+curl https://main--adobe-eds-da-oracle-netsuite--skkdept.aem.page/what-is-erp.plain.html
+```
 
 Background on content and markup structure can be found at https://www.aem.live/developer/markup-sections-blocks and https://www.aem.live/developer/markup-reference respectively.
 
-You can inspect the contents of any page with `curl http://localhost:3000/path/to/page`, `curl http://localhost:3000/path/to/page.md`, and `curl http://localhost:3000/path/to/page.plain.html`
+You can inspect the contents of any live page with:
+- `curl https://main--adobe-eds-da-oracle-netsuite--skkdept.aem.page/path/to/page.plain.html`
+- Or locally: `curl http://localhost:3000/path/to/page.plain.html`
 
 ### Blocks
 
@@ -180,6 +212,44 @@ With this information, you can construct URLs for the preview environment (same 
 - Test changes locally before committing
 - Follow the Publishing Process documented above
 - Update documentation for significant changes
+
+## Article Page Layout Pattern
+
+The `/what-is-erp` page (and similar article pages) use a specific two-column layout. This is the expected CMS content structure:
+
+```
+Section 1 — breadcrumb (separate section)
+  <p>Home › Resource Center › Article Title</p>
+  section-metadata: Style = breadcrumb
+
+Section 2 — article + sidebar (same section, triggers 2-column grid)
+  <h1>Article Title</h1>
+  ... article body content ...
+  callout block (Key Takeaway, etc.)
+  columns block (comparison tables)
+  callout cta block (inline CTA)
+  article-sidebar block:
+    Row 1: [image | title | description | CTA link]  ← Featured Resource
+    Row 2: [Related Articles | links...]
+    Row 3: [Popular Topics | tag links...]
+    Row 4: [Stay Informed | description text]
+  section-metadata: Style = article-layout   ← THIS activates the 2-column CSS grid
+
+Section 3 — related solutions cards
+  <h2>Related Solutions</h2>
+  cards block
+  section-metadata: Style = light
+
+Section 4 — CTA banner
+  <h2>...</h2>
+  <p><strong><a href="...">CTA Button</a></strong></p>
+  section-metadata: Style = cta-banner
+```
+
+**If the right sidebar is not visible**, the most likely cause is that either:
+1. The `article-sidebar` block is not in the CMS page content
+2. The `section-metadata Style: article-layout` is missing from that section
+3. Both the `article-sidebar` block and `section-metadata` must be in the **same section div** in the CMS
 
 ## If all else fails
 
