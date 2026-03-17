@@ -122,18 +122,23 @@ function decorateButtons(main) {
  * @param {Element} main The main element
  */
 function optimizeInlineImages(main) {
+  // The first content image is the LCP candidate (e.g. article banner) — load it eagerly.
+  // All others use lazy. Mobile breakpoint is 600px (not 400px) to cover 1.5x DPR devices
+  // where a 380px display needs a ~570px source.
+  let isFirst = true;
   main.querySelectorAll('.default-content-wrapper picture').forEach((picture) => {
     const img = picture.querySelector('img');
     if (!img || !img.src) return;
-    const newPicture = createOptimizedPicture(img.src, img.alt, img.loading === 'eager', [
+    const eager = isFirst || img.loading === 'eager';
+    isFirst = false;
+    const newPicture = createOptimizedPicture(img.src, img.alt, eager, [
       { media: '(min-width: 900px)', width: '750' },
       { media: '(min-width: 480px)', width: '600' },
-      { width: '400' },
+      { width: '600' },
     ]);
     const newImg = newPicture.querySelector('img');
     if (img.getAttribute('width')) newImg.setAttribute('width', img.getAttribute('width'));
     if (img.getAttribute('height')) newImg.setAttribute('height', img.getAttribute('height'));
-    newImg.loading = img.loading || 'lazy';
     picture.replaceWith(newPicture);
   });
 }
