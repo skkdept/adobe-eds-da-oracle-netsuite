@@ -133,8 +133,17 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+
+  // Skip navigation link for accessibility
+  const skipNav = document.createElement('a');
+  skipNav.href = '#main-content';
+  skipNav.className = 'skip-nav';
+  skipNav.textContent = 'Skip to main content';
+  doc.body.prepend(skipNav);
+
   const main = doc.querySelector('main');
   if (main) {
+    main.id = 'main-content';
     decorateMain(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
@@ -171,6 +180,48 @@ async function loadLazy(doc) {
 }
 
 /**
+ * Injects JSON-LD structured data for the page (SEO/GEO).
+ * Reads metadata from the document to build Article schema.
+ */
+function injectStructuredData(doc) {
+  const title = doc.querySelector('title')?.textContent || doc.querySelector('h1')?.textContent || '';
+  const description = doc.querySelector('meta[name="description"]')?.content || '';
+  const canonicalEl = doc.querySelector('link[rel="canonical"]');
+  const url = canonicalEl ? canonicalEl.href : window.location.href;
+  const image = doc.querySelector('main picture img')?.src || '';
+  const dateModified = doc.querySelector('meta[name="modified-time"]')?.content
+    || doc.querySelector('time')?.getAttribute('datetime') || '';
+
+  // Article schema — used by Google and AI crawlers (GEO)
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    url,
+    image: image || undefined,
+    dateModified: dateModified || undefined,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Oracle NetSuite',
+      url: 'https://www.netsuite.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${window.location.origin}/icons/oracle-netsuite-logo-white.svg`,
+      },
+    },
+  };
+
+  // Remove undefined fields
+  Object.keys(schema).forEach((k) => schema[k] === undefined && delete schema[k]);
+
+  const script = doc.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(schema);
+  doc.head.append(script);
+}
+
+/**
  * Loads everything that happens a lot later,
  * without impacting the user experience.
  */
@@ -183,6 +234,7 @@ function loadDelayed() {
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
+  injectStructuredData(document);
   loadDelayed();
 }
 

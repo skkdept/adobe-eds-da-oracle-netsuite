@@ -20,22 +20,22 @@
   --text-color-muted: #767676;
   --link-color: #0074a6;
   --link-hover-color: #005580;
-  --accent-color: #00c7b7;
-  --accent-hover-color: #00b8a9;
+  --accent-color: #5fb9b5;
+  --accent-hover-color: #56aca8;
   --accent-orange: #e87722;
   --accent-orange-hover: #cf6a1f;
   --callout-bg: #e8f5f9;
   --callout-border: #0074a6;
   --cta-banner-bg: #dfe9d5;
   --border-color: #e3e3e3;
-  --header-topbar-bg: #4a4a4a;
-  --header-nav-bg: #2d3e50;
+  --header-topbar-bg: #403c38;
+  --header-nav-bg: #1c2127;
   --footer-bg: #4a4a4a;
   --sidebar-blue: #3a5a99;
 
   /* fonts */
-  --body-font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --heading-font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --body-font-family: "Oracle Sans", roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+  --heading-font-family: "Oracle Sans", roboto-condensed, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
 
   /* body sizes */
   --body-font-size-m: 15px;
@@ -84,6 +84,24 @@
     --heading-font-size-s: 16px;
     --heading-font-size-xs: 14px;
   }
+}
+
+/* skip nav — visually hidden until focused */
+.skip-nav {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  padding: 8px 16px;
+  background: #fff;
+  color: var(--link-color);
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 10000;
+  text-decoration: underline;
+}
+
+.skip-nav:focus {
+  top: 0;
 }
 
 body {

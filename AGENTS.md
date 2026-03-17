@@ -2,6 +2,15 @@
 
 This project is a website built with Edge Delivery Services in Adobe Experience Manager Sites as a Cloud Service. As an agent, follow the instructions in this file to deliver code based on Adobe's standards for fast, easy-to-author, and maintainable web experiences.
 
+## CRITICAL: Local Dev Does NOT Work
+
+**Never suggest testing at `http://localhost:3000` or running the local dev server.** Local development does not work in this environment.
+
+Always test and verify against the live preview URL:
+- `https://main--adobe-eds-da-oracle-netsuite--skkdept.aem.page/`
+
+After making code changes, push to the repo and check the aem.page preview URL.
+
 ## Project Overview
 
 This project is based on the https://github.com/adobe/aem-boilerplate/ project and set up as a new project. You are expected to follow the coding style and practices established in the boilerplate, but add functionality according to the needs of the site currently developed.

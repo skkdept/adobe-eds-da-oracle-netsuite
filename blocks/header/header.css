@@ -101,22 +101,24 @@ header .nav-search-inner svg {
 header .nav-search input {
   width: 100%;
   box-sizing: border-box;
-  background-color: #5a5a5a;
-  color: #fff;
-  border: none;
-  padding: 10px 12px 10px 36px;
+  background-color: #4e4944;
+  color: #e4e1dd;
+  border: 3px dotted transparent;
+  padding: 7px 18px 7px 40px;
   font-size: 14px;
+  letter-spacing: 0.05em;
   outline: none;
-  border-radius: 2px;
+  border-radius: 50px;
   transition: background-color 0.2s;
 }
 
 header .nav-search input::placeholder {
-  color: #999;
+  color: #e4e1dd;
 }
 
 header .nav-search input:focus {
-  background-color: #666;
+  background-color: #5a534e;
+  border-color: #fff;
 }
 
 /* hamburger (kept before nav-tools to avoid descending specificity) */
@@ -192,18 +194,20 @@ header .nav-tools .nav-phone-icon {
 }
 
 header .nav-tools .nav-cta-button {
-  background-color: var(--accent-color);
-  color: #1a1a1a;
+  background-color: #5fb9b5;
+  border: 1px solid #5fb9b5;
+  color: #161513;
   font-weight: 600;
-  padding: 8px 20px;
+  padding: 7px 18px;
   border-radius: 4px;
   opacity: 1;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
 header .nav-tools .nav-cta-button:hover {
-  background-color: var(--accent-hover-color);
-  color: #1a1a1a;
+  background-color: #56aca8;
+  border-color: #56aca8;
+  color: #161513;
   opacity: 1;
 }
 
@@ -233,7 +237,7 @@ header .nav-sections ul > li > a:any-link,
 header .nav-sections ul > li > p,
 header .nav-sections ul > li > p > a:any-link,
 header .nav-sections .nav-drop {
-  color: #fff;
+  color: #f3f3f3;
   font-size: 13px;
   text-decoration: none;
   white-space: nowrap;

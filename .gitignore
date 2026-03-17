@@ -4,7 +4,7 @@ logs/*
 node_modules/*
 figma-react/*
 drafts/*
-
+clone/*
 
 helix-importer-ui
 .DS_Store

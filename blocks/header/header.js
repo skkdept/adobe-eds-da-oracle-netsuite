@@ -135,15 +135,18 @@ export default async function decorate(block) {
       brandLink.className = '';
       brandLink.closest('.button-container').className = '';
     }
-    // Wrap plain text brand in oracle/name spans if not already an image
+    // Use SVG logo; fall back to text if not available
     if (!navBrand.querySelector('img')) {
-      const brandText = navBrand.textContent.trim();
-      if (brandText) {
+      const brandText = navBrand.textContent.trim() || 'NetSuite';
+      navBrand.innerHTML = `<a href="/" aria-label="Oracle NetSuite">
+        <img src="/icons/oracle-netsuite-logo-white.svg" alt="Oracle / NetSuite" width="82" height="30" loading="eager" fetchpriority="high">
+      </a>`;
+      navBrand.querySelector('a').addEventListener('error', () => {
         navBrand.innerHTML = `<a href="/" aria-label="${brandText}">
           <span class="nav-brand-oracle">Oracle</span>
           <span class="nav-brand-name">${brandText}</span>
         </a>`;
-      }
+      }, { once: true });
     }
   }
 
