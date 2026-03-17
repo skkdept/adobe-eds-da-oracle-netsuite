@@ -1,6 +1,7 @@
 .columns > div {
   display: flex;
   flex-direction: column;
+  gap: 16px;
 }
 
 .columns img {
@@ -9,10 +10,34 @@
 
 .columns > div > div {
   order: 1;
+  border: 1px solid var(--border-color);
+  padding: 20px;
+}
+
+.columns > div > div h4 {
+  margin-top: 0;
+}
+
+.columns > div > div ul {
+  list-style: none;
+  padding: 0;
+}
+
+.columns > div > div li {
+  padding: 4px 0;
+}
+
+.columns > div > div li::before {
+  content: "\2713";
+  color: var(--link-color);
+  margin-right: 8px;
+  font-weight: 700;
 }
 
 .columns > div > .columns-img-col {
   order: 0;
+  border: none;
+  padding: 0;
 }
 
 .columns > div > .columns-img-col img {
@@ -21,7 +46,7 @@
 
 @media (width >= 900px) {
   .columns > div {
-    align-items: center;
+    align-items: stretch;
     flex-direction: unset;
     gap: 24px;
   }

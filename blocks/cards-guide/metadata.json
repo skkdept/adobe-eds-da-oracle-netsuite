@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-guide",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-03-17T02:39:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.netsuite.com/portal/resource/articles/erp/what-is-erp.shtml",
+    "originPage": "ERP resource article page",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "guide-cards",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + category + heading + link",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "resource guide listings",
+      "ebook/whitepaper promotions",
+      "related content cards with thumbnails"
+    ],
+    "notSuitableFor": [
+      "product feature cards without images",
+      "team member profiles",
+      "pricing cards"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/portal/resource/articles/erp/what-is-erp"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-17T02:39:00.000Z"
+  }
+}

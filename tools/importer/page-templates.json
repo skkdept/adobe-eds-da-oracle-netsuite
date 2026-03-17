@@ -1,0 +1,98 @@
+{
+  "templates": [
+    {
+      "name": "resource-article",
+      "urls": [
+        "https://www.netsuite.com/portal/resource/articles/erp/what-is-erp.shtml"
+      ],
+      "description": "NetSuite resource article page about ERP topics, with educational content and related resources",
+      "blocks": [
+        {
+          "name": "hero-article",
+          "instances": ["div.article-banner"]
+        },
+        {
+          "name": "embed-video",
+          "instances": ["div.ratio.ratio-16x9"]
+        },
+        {
+          "name": "columns-cta",
+          "instances": ["div.cta.bg.bg-ai-1", "section.py-0 div.ug-treatment", "section.py-0 div.how-to-treatment"]
+        },
+        {
+          "name": "cards-guide",
+          "instances": ["section.business-guide-carousel", "div.related-articles", "section.solutions-grid"]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Article Hero",
+          "selector": "div.article-banner",
+          "style": null,
+          "blocks": ["hero-article"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Article Body",
+          "selector": "article.article-body div.entry-content",
+          "style": null,
+          "blocks": ["embed-video", "columns-cta"],
+          "defaultContent": [
+            "article.article-body div.entry-content > p:first-child",
+            "h2#target1",
+            "p.h2",
+            "h2#target2",
+            "h2#target3",
+            "h2#target4",
+            "h2#target5",
+            "h2#target6",
+            "h2#target7",
+            "h2#target8",
+            "h2#target9",
+            "h2#target10",
+            "h2#target11",
+            "h2#target12",
+            "h2#target13",
+            "h2#target14",
+            "h2#target15",
+            "div.consensus-embed"
+          ]
+        },
+        {
+          "id": "section-3",
+          "name": "You May Also Like",
+          "selector": "section.business-guide-carousel",
+          "style": null,
+          "blocks": ["cards-guide"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-4",
+          "name": "Related Articles",
+          "selector": "div.related-articles",
+          "style": null,
+          "blocks": ["cards-guide"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-5",
+          "name": "Solutions Grid",
+          "selector": "section.solutions-grid",
+          "style": null,
+          "blocks": ["cards-guide"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-6",
+          "name": "Bottom CTA",
+          "selector": "section.botcta",
+          "style": "dark",
+          "blocks": [],
+          "defaultContent": ["section.botcta div.container"]
+        }
+      ]
+    }
+  ]
+}

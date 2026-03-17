@@ -1,0 +1,53 @@
+.callout {
+  background-color: var(--callout-bg);
+  border-left: 4px solid var(--callout-border);
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+
+.callout h3,
+.callout h4 {
+  margin-top: 0;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.callout p {
+  color: var(--text-color-muted);
+}
+
+.callout ol {
+  padding-left: 24px;
+}
+
+.callout li {
+  margin-bottom: 8px;
+}
+
+/* CTA variant */
+.callout.callout-cta {
+  background-color: var(--callout-border);
+  border-left: none;
+  padding: 32px;
+  text-align: center;
+}
+
+.callout.callout-cta h3 {
+  color: #fff;
+}
+
+.callout.callout-cta p {
+  color: rgba(255 255 255 / 90%);
+}
+
+.callout.callout-cta a.button {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--text-color);
+  margin-top: 8px;
+}
+
+.callout.callout-cta a.button:hover {
+  background-color: var(--accent-hover-color);
+  border-color: var(--accent-hover-color);
+}

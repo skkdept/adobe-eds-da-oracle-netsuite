@@ -1,0 +1,38 @@
+{
+  "variantName": "hero-article",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-03-17T02:37:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.netsuite.com/portal/resource/articles/erp/what-is-erp.shtml",
+    "originPage": "ERP resource article page",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "article-hero",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "banner-image + heading + author-info + date",
+    "buttonCount": 0,
+    "imageCount": 2
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "resource article pages",
+      "blog post pages",
+      "editorial content pages with author attribution"
+    ],
+    "notSuitableFor": [
+      "product landing pages",
+      "marketing hero sections with CTA buttons"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/portal/resource/articles/erp/what-is-erp"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-17T02:37:00.000Z"
+  }
+}

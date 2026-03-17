@@ -1,0 +1,38 @@
+{
+  "variantName": "columns-cta",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-03-17T02:39:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.netsuite.com/portal/resource/articles/erp/what-is-erp.shtml",
+    "originPage": "ERP resource article page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "inline-cta",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading + paragraph + CTA button",
+    "buttonCount": 1,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "inline call-to-action sections",
+      "promotional banners within articles",
+      "product tour CTAs"
+    ],
+    "notSuitableFor": [
+      "multi-column content layouts",
+      "image-heavy comparison sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/portal/resource/articles/erp/what-is-erp"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-17T02:39:00.000Z"
+  }
+}

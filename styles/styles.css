@@ -12,29 +12,36 @@
 
 :root {
   /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  --background-color: #fff;
+  --light-color: #f5f5f5;
+  --dark-color: #4a4a4a;
+  --text-color: #212121;
+  --text-color-muted: #767676;
+  --link-color: #0074a6;
+  --link-hover-color: #005a80;
+  --accent-color: #00c7b7;
+  --accent-hover-color: #00a89a;
+  --callout-bg: #e8f5f9;
+  --callout-border: #0074a6;
+  --cta-banner-bg: #dfe9d5;
+  --border-color: #e3e3e3;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --heading-font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 13px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  --heading-font-size-xxl: 36px;
+  --heading-font-size-xl: 28px;
+  --heading-font-size-l: 22px;
+  --heading-font-size-m: 18px;
+  --heading-font-size-s: 16px;
+  --heading-font-size-xs: 14px;
 
   /* nav height */
   --nav-height: 64px;
@@ -56,17 +63,17 @@
 @media (width >= 900px) {
   :root {
     /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
+    --body-font-size-m: 16px;
+    --body-font-size-s: 14px;
+    --body-font-size-xs: 13px;
 
     /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    --heading-font-size-xxl: 36px;
+    --heading-font-size-xl: 28px;
+    --heading-font-size-l: 22px;
+    --heading-font-size-m: 18px;
+    --heading-font-size-s: 16px;
+    --heading-font-size-xs: 14px;
   }
 }
 
@@ -74,10 +81,10 @@ body {
   display: none;
   margin: 0;
   background-color: var(--background-color);
-  color: var(--text-color);
+  color: var(--text-color-muted);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 body.appear {
@@ -104,12 +111,18 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
+  margin-top: 1em;
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 300;
+  line-height: 1.2;
   scroll-margin: 40px;
+  color: var(--text-color);
+}
+
+h3,
+h4 {
+  font-weight: 600;
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
@@ -179,10 +192,10 @@ button.button {
   max-width: 100%;
   margin: 0;
   border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
+  border-radius: 0;
+  padding: 0.6em 1.5em;
   font: inherit;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.25;
   text-decoration: none;
   cursor: pointer;
@@ -199,18 +212,18 @@ button.button:disabled {
 
 a.button.primary,
 button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+  color: var(--text-color);
 }
 
 a.button.primary:hover,
 a.button.primary:focus-visible,
 button.button.primary:hover,
 button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
+  border-color: var(--accent-hover-color);
+  background-color: var(--accent-hover-color);
+  color: var(--text-color);
 }
 
 a.button.primary[aria-disabled="true"],
@@ -322,4 +335,41 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+main .section.light-gray {
+  background-color: var(--light-color);
+  margin: 0;
+  padding: 48px 0;
+}
+
+main .section.cta-banner {
+  background-color: #3a3f47;
+  margin: 0;
+  padding: 56px 0;
+  text-align: center;
+}
+
+main .section.cta-banner h2 {
+  font-size: var(--heading-font-size-xl);
+  font-weight: 300;
+  color: #fff;
+}
+
+main .section.cta-banner p {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgb(255 255 255 / 85%);
+}
+
+main .section.cta-banner a.button {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--text-color);
+}
+
+main .section.cta-banner a.button:hover {
+  background-color: var(--accent-hover-color);
+  border-color: var(--accent-hover-color);
 }
