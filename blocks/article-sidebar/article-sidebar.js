@@ -18,8 +18,20 @@ export default function decorate(block) {
   const rows = [...block.children];
   block.textContent = '';
 
-  // 1. Auto-generate "In This Article" TOC — scan only the article section
+  // Wrap all non-sidebar sibling divs in .article-main so flexbox layout works
+  // without the sidebar height bleeding into the article column (avoids grid whitespace)
   const section = block.closest('.section');
+  const sidebarWrapper = block.closest('.article-sidebar-wrapper');
+  if (section && sidebarWrapper) {
+    const articleMain = document.createElement('div');
+    articleMain.className = 'article-main';
+    [...section.children].forEach((child) => {
+      if (child !== sidebarWrapper) articleMain.append(child);
+    });
+    section.prepend(articleMain);
+  }
+
+  // 1. Auto-generate "In This Article" TOC — scan only the article section
   if (section) {
     const headings = [...section.querySelectorAll('h2, h3')].filter((h) => {
       // skip headings inside the sidebar block itself
