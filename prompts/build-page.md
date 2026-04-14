@@ -34,12 +34,41 @@ Read `clone/<page-name>.html` in chunks and extract:
 
 ---
 
-### Step 2 — Audit existing blocks
-For each block type identified in Step 1, check if a matching block exists under `blocks/`.
-List:
-- Blocks that exist and are ready
-- Blocks that need CSS/JS updates to match the reference
-- Blocks that are missing and need to be created
+### Step 2 — Apply David's Model + Audit blocks
+
+**First, for every content sequence identified in Step 1, ask:**
+> "Can an author create this by just typing in DA Live?" (heading, paragraph, image, link, simple list)
+> - YES → **default content** — no block needed
+> - NO → needs a block
+
+Only proceed to block audit for sequences that truly need a block.
+
+**For each block needed, check in this order:**
+
+1. **Existing project blocks** (`blocks/` folder):
+   `article-sidebar`, `callout`, `cards`, `cards-guide`, `columns`, `columns-cta`, `embed-video`, `footer`, `fragment`, `header`, `hero`, `hero-article`, `promo-banner`
+   → If match: **REUSE** (CSS tweaks only if design differs)
+
+2. **Block Collection cache** (`.github/skills/eds-conversion/block-collection/index.json`):
+   → If match: **REUSE_COLLECTION** (copy JS+CSS, adapt CSS)
+   → Cache missing? Run `python3 scripts/fetch-block-collection.py` once to populate it
+
+3. **Neither** → **BUILD** from scratch using the canonical content model below
+
+**Assign a canonical content model to every block that needs building:**
+
+| Model | When | Key rule |
+|-------|------|----------|
+| **Standalone** | Unique one-off (hero, callout, promo-banner) | Safe default |
+| **Collection** | Repeating items — each table row = one item | Max 4 cells/row |
+| **Configuration** | API-driven behavior only (sort/filter params) | NOT for static content |
+| **Auto-Blocked** | Pattern JS auto-detects (YouTube URL, tabs from H2s) | Rare |
+
+List outcome:
+- Blocks that exist and are ready (REUSE)
+- Blocks that need CSS/JS updates (REUSE with tweaks)
+- Blocks from Block Collection to copy (REUSE_COLLECTION)
+- Blocks missing and need to be created (BUILD) — with canonical model noted
 
 ---
 
